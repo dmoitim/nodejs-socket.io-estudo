@@ -1,3 +1,3 @@
 # nodejs-socket.io-estudo
 
-Esse repositÃ³rio contÃ©m os fontes de meus estudos de NodeJS
+Esse repositório contém os fontes de meus estudos do framework Socket.IO - NodeJS

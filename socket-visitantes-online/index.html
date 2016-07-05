@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Exemplo de Socket.IO</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io('http://localhost:3000');
+        socket.on('visits', function(visitas){
+            document.getElementById('visitas').innerHTML = visitas;
+        });
+    </script>
+</head>
+<body>
+    <h1>Exemplo de Socket.IO - Contador de visitantes online</h1>
+    <p><strong>Número de visitantes:</strong> <span id="visitas">0</span></p>
+</body>
+</html>
