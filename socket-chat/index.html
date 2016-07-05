@@ -1,6 +1,7 @@
-<!doctype html>
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="ISO-8859-1">
         <title>Socket.IO chat</title>
         <style>
             * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,9 +13,34 @@
             #messages li { padding: 5px 10px; }
             #messages li:nth-child(odd) { background: #eee; }
         </style>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+        <script>
+            var socket = io();
+
+            $(document).ready(function(){
+                $('#m').focus();
+
+                //Quando usuário envia a mensagem executa os passos:
+                $('form').submit(function(event){
+                    //Popula a variável mensagem com o value do input
+                    var mensagem = $('#m').val().trim();
+                    //Envia a mensagem através do socket
+                    socket.emit('chat', mensagem);
+                    //Limpa o campo
+                    $("#m").val('');
+                    return false;
+                });
+
+                //Função que fica escutando o socket e popula as mensagens enviadas/recebidas na tela
+                socket.on('chat', function(msg){
+                    $('#mensagens').append($('<li>').text(msg));
+                });
+            });
+        </script>
     </head>
     <body>
-        <ul id="messages"></ul>
+        <ul id="mensagens"></ul>
         <form action="">
             <input id="m" autocomplete="off" /><button>Enviar</button>
         </form>
